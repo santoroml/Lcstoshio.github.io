@@ -26,7 +26,7 @@ Para criação dos gráficos procurei alguns sites úteis com exemplos de densit
 **Arquivos necessários (toy data):**
 
 - [**test.best:**](https://lcstoshio.github.io/Tutorial_graphPRS/test.best) exportado pelo PRSice (output.best) e contém os escores de risco para cada indivíduo no melhor p-threshold  
-- [**test.summary:**](https://lcstoshio.github.io/Tutorial_graphPRS/test.summary) exportado pelo PRSice (output.summary) e contém qual p-threshold foi utilizado e o número de SNPs  
+- [**test.summary:**](https://lcstoshio.github.io/Tutorial_graphPRS/test.summary) exportado pelo PRSice (output.summary) e contém qual p-threshold foi utilizado, o número de SNPs, valor de p e R^2 do modelo, ...  
 - [**test_pheno:**](https://lcstoshio.github.io/Tutorial_graphPRS/test_pheno) arquivo de fenótipos que foi utilizado no PRSice no comando --pheno  
 
 ```{r message=FALSE, warning=FALSE}
