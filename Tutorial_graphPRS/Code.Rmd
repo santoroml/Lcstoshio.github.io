@@ -84,5 +84,6 @@ ggplot(final, aes(x=a_PRS, group=pheno, fill=pheno))+ # a_PRS = escores; pheno =
      theme_classic()+ # um dos temas para gráficos
      theme(plot.title = element_text(color="black", size=14, face="bold.italic"), legend.position = "right")+ # Fonte do título e posição da legenda
      ggtitle ("Curva de Distribuição de PRS")+ # Título
-     labs(x="Polygenic Risk Score", y="Density") # Nome do eixo x e y
+     labs(x="Polygenic Risk Score", y="Density")+ # Nome do eixo x e y
+     xlim(0.5,3) # Limites do eixo x
 ```
