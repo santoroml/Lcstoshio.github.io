@@ -45,14 +45,14 @@ Para fenótipos qualitativos (ex.: caso/controle) é melhor utilizar gráficos d
 Depois é necessário realizar algumas alterações nesses arquivos, para que possamos por fim juntá-los num único data.frame que será utilizado na plotagem dos gráficos no ggplot2.
 
 ```{r}
-# Ler o arquivo .best e excluir as colunas de "FID" e  "ln_Regression" que não nos interessam aqui
-prs <- read.table ("./test.best", header=T, colClasses = c("NULL", "character", "NULL", "numeric"))
+# Ler o arquivo .best
+prs <- read.table ("./test.best", header=T)
 # Quando for analisar mais de um fenótipo é importante mudarmos o nome das colunas do escore para diferenciá-los
-colnames(prs) <- c("IID", "a_PRS") 
+colnames(prs) <- c("FID", "IID", "ln_Regression", "a_PRS") 
 
 # Importando arquivo do fenótipo
 phenotype <- read.table ("./test_pheno", header = T)
-colnames(phenotype) <- c("FID", "IID", "pheno") 
+colnames(phenotype) <- c("FID2", "IID", "pheno") # é bom mudar o nome da coluna FID pq da problema depois ter 2 colunas com mesmo nome
 # Em casos de dados qualitativos é melhor alterar a nomenclatura do fenótipo (0 e 1 para controle/ caso)
 phenotype <- mutate(phenotype, pheno=factor(pheno, labels=c('Controle', 'Caso')))
 
