@@ -7,7 +7,7 @@ output:
   highlight: pygments
 ---
 
-[**Arquivo de RMarkdown com script do R**](https://lcstoshio.github.io/Tutorial_graphPRS/code.Rmd)
+[**Arquivo de RMarkdown com script do R**](https://github.com/Lcstoshio/Lcstoshio.github.io/blob/main/Tutorial_graphPRS/Code.Rmd)
 
 # **Modelo Gráfico da distribuição do Escore Poligênico de Risco (PRS)**
 
