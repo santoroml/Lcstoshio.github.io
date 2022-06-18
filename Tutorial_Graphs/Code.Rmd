@@ -650,7 +650,7 @@ br$value <- runif(27, 1, 99) # não tenho dataset, então só gerei uns números
 
 ggplotly(br %>% 
     ggplot()+
-    geom_sf(aes(fill=value, text = paste("Value: ", round(value,1), sep = "")))+
+    geom_sf(aes(fill=value, text = paste("State: ", name_state , "\n" ,"Value: ", round(value,1), sep = "")))+
     scale_fill_gradient(low = "gray95", high = "dodgerblue4")+
     theme(legend.title = element_text(size=12, color="Black", family="Merriweather", face="bold.italic"), # Formatação dos textos e eixos
           plot.title = element_text(family = "Playfair", color="black", size=20, face="bold.italic"),
