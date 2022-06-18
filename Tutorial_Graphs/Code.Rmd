@@ -59,9 +59,7 @@ penguins_raw <- penguins_raw # ?penguins_raw for more information
 
 # **Bar Graphs**
 
-## **Absolute Frequency (N)**
-
-### **Basic**
+## **(N) Basic**
 
 ```{r}
 (penguins %>% # Dataset
@@ -69,7 +67,7 @@ penguins_raw <- penguins_raw # ?penguins_raw for more information
     geom_bar()) # Formato de barras
 ```
 
-### **Complete**
+## **(N) Complete**
 
 ```{r}
 (penguins %>% drop_na(sex) %>% # Remove os NAs
@@ -91,7 +89,7 @@ penguins_raw <- penguins_raw # ?penguins_raw for more information
     scale_x_discrete(labels= c("Female", "Male")) # Renomeando texto no eixo x
 ```
 
-### **Separated by groups**
+## **(N) Separated by groups**
 
 ```{r}
 (penguins %>% drop_na(sex) %>% # Remove os NAs
@@ -116,9 +114,7 @@ penguins_raw <- penguins_raw # ?penguins_raw for more information
      facet_wrap(~species, nrow = 1, labeller = labeller (Group = labels))) # Segunda variável separando o gráfico em mais gráficos
 ```
 
-## **Relative Frequency (%)**
-
-### **Basic**
+## **(%) Basic**
 
 ```{r}
 (penguins %>% drop_na(sex) %>% 
@@ -126,7 +122,7 @@ penguins_raw <- penguins_raw # ?penguins_raw for more information
     geom_bar(aes(y = (..count..)/sum(..count..))))
 ```
 
-### **Complete**
+## **(%) Complete**
 
 ```{r}
 (penguins %>% drop_na(sex) %>% # Remove os NAs
@@ -149,7 +145,7 @@ penguins_raw <- penguins_raw # ?penguins_raw for more information
     scale_x_discrete(labels= c("Female", "Male")) # Renomeando texto no eixo x
 ```
 
-### **Separated by groups**
+## **(%) Separated by groups**
 
 ```{r}
 (penguins %>% drop_na(sex) %>% # Remove os NAs
@@ -177,7 +173,7 @@ penguins_raw <- penguins_raw # ?penguins_raw for more information
 
 # **Histogram**
 
-### **Basic**
+## **Basic**
 
 ```{r}
 (penguins %>% drop_na(flipper_length_mm) %>% 
@@ -185,7 +181,7 @@ penguins_raw <- penguins_raw # ?penguins_raw for more information
     geom_histogram())
 ```
 
-### **Complete**
+## **Complete**
 
 ```{r}
 (penguins %>% drop_na(flipper_length_mm) %>%  # remover NAs
@@ -205,7 +201,7 @@ penguins_raw <- penguins_raw # ?penguins_raw for more information
          y = 'Absolute Frequency (N)'))
 ```
 
-### **Separated by groups**
+## **Separated by groups**
 
 ```{r}
 (penguins %>% drop_na(flipper_length_mm) %>% # remover NAs
@@ -227,7 +223,7 @@ penguins_raw <- penguins_raw # ?penguins_raw for more information
 
 # **Density Plot**
 
-### **Basic**
+## **Basic**
 
 ```{r}
 penguins %>% 
@@ -235,7 +231,7 @@ penguins %>%
     geom_density()
 ```
 
-### **Complete**
+## **Complete**
 
 ```{r}
 (penguins %>% drop_na(flipper_length_mm) %>% 
@@ -254,7 +250,7 @@ penguins %>%
          y = 'Density'))
 ```
 
-### **Separated by groups**
+## **Separated by groups**
 
 ```{r}
 mean <- ddply(penguins, "species", summarise, grp.mean=mean(flipper_length_mm, na.rm=TRUE))
@@ -303,7 +299,7 @@ mean <- ddply(penguins, "species", summarise, grp.mean=mean(flipper_length_mm, n
 
 # **Pie Chart**
 
-### **Basic**
+## **Basic**
 
 ```{r}
 # o ggplot não tem uma função específica direito para fazer piechart, então é um pouco remendado
@@ -316,7 +312,7 @@ mean <- ddply(penguins, "species", summarise, grp.mean=mean(flipper_length_mm, n
     coord_polar(theta = "y", start = 0)) # função utilizada para montar pie chart
 ```
 
-### **Complete**
+## **Complete**
 
 ```{r}
 (penguins %>% 
@@ -344,7 +340,7 @@ mean <- ddply(penguins, "species", summarise, grp.mean=mean(flipper_length_mm, n
 
 # **Boxplot**
 
-### **Basic**
+## **Basic**
 
 ```{r}
 penguins %>% drop_na(flipper_length_mm) %>% 
@@ -352,7 +348,7 @@ penguins %>% drop_na(flipper_length_mm) %>%
     geom_boxplot()
 ```
 
-### **Complete**
+## **Complete**
 
 ```{r}
 (penguins %>% drop_na(flipper_length_mm) %>% 
@@ -401,7 +397,7 @@ penguins %>% drop_na(flipper_length_mm) %>%
 
 # **Scatter Plot**
 
-### **Basic**
+## **Basic**
 
 ```{r}
 (penguins %>% drop_na(flipper_length_mm) %>% 
@@ -431,7 +427,7 @@ bill_len_dep <- ggplot(data = penguins,
         plot.caption.position = "plot")
 ```
 
-### **Complete**
+## **Complete**
 
 ```{r}
 (penguins %>% drop_na(flipper_length_mm, bill_length_mm) %>% 
@@ -450,7 +446,7 @@ bill_len_dep <- ggplot(data = penguins,
          y = "Bill Length (mm)"))
 ```
 
-### **Separated by Species**
+## **Separated by Species**
 
 ```{r}
 (penguins %>% drop_na(flipper_length_mm, bill_length_mm) %>% 
