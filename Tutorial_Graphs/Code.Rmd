@@ -59,7 +59,7 @@ penguins_raw <- penguins_raw # ?penguins_raw for more information
 
 # **Bar Graphs**
 
-## **Frequence Absolute (N)**
+## **Absolute Frequency (N)**
 
 ### **Basic**
 
@@ -85,7 +85,7 @@ penguins_raw <- penguins_raw # ?penguins_raw for more information
     labs(title = "Bar Graph", # Título, subtítulo e títulos dos eixos
          subtitle = "Sex",
          x = "Sex", 
-         y = "Absolute Frequence (N)") + 
+         y = "Absolute Frequency (N)") + 
     scale_fill_brewer(palette="Set1") + # Cor das barras
     scale_color_brewer(palette="Set1")) + # Cor do contorno das barras
     scale_x_discrete(labels= c("Female", "Male")) # Renomeando texto no eixo x
@@ -109,14 +109,14 @@ penguins_raw <- penguins_raw # ?penguins_raw for more information
     labs(title = "Bar Graph", # Título, subtítulo e títulos dos eixos
          subtitle = "Sex by Species",
          x = "Sex", 
-         y = "Absolute Frequence (N)") + 
+         y = "Absolute Frequency (N)") + 
      scale_fill_brewer(palette="Set1") + # Cor das barras
      scale_color_brewer(palette="Set1") + # Cor do contorno das barras
      scale_x_discrete(labels= c("Female", "Male"))+ # Renomeando texto no eixo x
      facet_wrap(~species, nrow = 1, labeller = labeller (Group = labels))) # Segunda variável separando o gráfico em mais gráficos
 ```
 
-## **Relative Frequence (%)**
+## **Relative Frequency (%)**
 
 ### **Basic**
 
@@ -143,7 +143,7 @@ penguins_raw <- penguins_raw # ?penguins_raw for more information
     labs(title = "Bar Graph", # Título, subtítulo e títulos dos eixos
          subtitle = "Sex",
          x = "Sex", 
-         y = "Relative Frequence (%)") + 
+         y = "Relative Frequency (%)") + 
     scale_fill_brewer(palette="Set1") + # Cor das barras
     scale_color_brewer(palette="Set1")) + # Cor do contorno das barras
     scale_x_discrete(labels= c("Female", "Male")) # Renomeando texto no eixo x
@@ -168,7 +168,7 @@ penguins_raw <- penguins_raw # ?penguins_raw for more information
     labs(title = "Bar Graph", # Título, subtítulo e títulos dos eixos
          subtitle = "Sex by Species",
          x = "Sex", 
-         y = "Relative Frequence (%)") + 
+         y = "Relative Frequency (%)") + 
     scale_fill_brewer(palette="Set1") + # Cor das barras
     scale_color_brewer(palette="Set1")) + # Cor do contorno das barras
     scale_x_discrete(labels= c("Female", "Male"))+ # Renomeando texto no eixo x 
@@ -202,7 +202,7 @@ penguins_raw <- penguins_raw # ?penguins_raw for more information
     labs(title = "Histogram", # Título, subtítulo e títulos dos eixos
          subtitle = "Flipper Length",
          x = "Flipper Length (mm)", 
-         y = 'Absolute Frequence (N)'))
+         y = 'Absolute Frequency (N)'))
 ```
 
 ### **Separated by groups**
@@ -221,7 +221,7 @@ penguins_raw <- penguins_raw # ?penguins_raw for more information
     labs(title = "Histogram", # Título, subtítulo, legenda e eixos
          subtitle = "Flipper Length by Species",
          x = "Flipper Length (mm)", 
-         y = "Absolute Frequence (N)",
+         y = "Absolute Frequency (N)",
          fill = "Species"))
 ```
 
