@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Lato:wght@300&family=Merriweather:wght@300&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!--font-family: 'Bangers', cursive;
 font-family: 'Lato', sans-serif;
 font-family: 'Merriweather', serif;
@@ -40,6 +42,7 @@ body {
                3px 4px 4px rgba(179, 147, 211, 0.15),
                4px 6px 4px rgba(179, 147, 211, 0.2),
                5px 8px 4px rgab(179, 147, 211, 0.25);
+  z-index:999;
 }
 
 .header h6{
@@ -47,47 +50,162 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
-/* Page Content */
-.content {
+
+/* Page Content*/
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 250px;
+  background-color: #f1f1f1;
+  position: absolute;
+  height: 100%;
+  z-index: 0; /* Stay on top */
+  top: 1; /* Stay at the top */
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #2a03b8;
+  color: white;
+  font-size: 18px;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #625c75;
+  color: white;
+}
+
+div.content {
+  padding: 1px 16px;
+  height: 1000px;
+  background-color: #f1f1f1;
+}
+
+.content{
   padding: 40px;
   text-align: left;
   font-family: 'Merriweather', serif; 
   color: #2a03b8;
-  font-size: 10px;
+  font-size: 13px;
   letter-spacing: .1em;
-  text-shadow: 2px 2px 4px rgba(179, 147, 211, 0.1),
-               3px 4px 4px rgba(179, 147, 211, 0.15),
-               4px 6px 4px rgba(179, 147, 211, 0.2),
-               5px 8px 4px rgab(179, 147, 211, 0.25);
+  font-weight: bold;
 }
 
-.content a{
+.content h1{
+  margin-left: 250px;
+}
+
+.content  p{
+  margin-left: 250px;
   font-size: 11px;
-  font-family: 'Lato', sans-serif;
   color: #000;
+}
+
+.social-media-list li + li { padding-top: 5px; 
   text-decoration: none;
 }
+
+footer {
+  border-top: 1px solid #e8e8e8;
+  text-align: left;
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+  color: white;
+  overflow:hidden;
+}
+
+.contact-list, .social-media-list{
+  list-style: none;
+}
+
+
+.footer-heading { font-size: 18px; margin-bottom: 15px; }
+
+.footer-col-wrapper { font-size: 15px; color: #828282; margin-left: -15px; width: 500px; margin: 0 auto;}
+
+.footer-col { float: left; margin-bottom: 15px; padding-left: 15px; }
+
+.footer-col-1 { width: -webkit-calc(50% - (30px / 2)); width: calc(50% - (30px / 2)); }
+
+.footer-col-2 { width: -webkit-calc(20% - (50px / 2)); width: calc(50% - (30px / 2)); }
+
+@media screen and (max-width: 600px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    text-align: center;
+    float: none;
+  }
+  div.content {margin-left: 0;}
+}
+
 </style>
+
 </head>
 
 <body>
 
 <div class="header">
   <h1>Projects</h1>
+  <div>
   <h6>Lucas Toshio Ito
     <br> lucas.toshio@unifesp.br
   </h6>
 </div>
+</div>
+
+<div class="sidebar">
+  <a id="top", class="active"> <strong>Finished Projects</strong></a>
+  <a href="https://lcstoshio.github.io/Tutorial_RMarkdown/"><strong>Tutorial Rmarkdown</strong></a>
+  <a href="https://lcstoshio.github.io/Tutorial_graphPRS/"><strong>Tutorial de gráfico de PRS (PRSice)</strong></a>
+  <a href="https://lcstoshio.github.io/Tutorial_Graphs/"><strong>Tutorial de gráficos (ggplot2)</strong></a>
+</div>
 
 <div class="content">
-  <h1>Finished Projects</h1>
-  <p><a href="https://lcstoshio.github.io/Tutorial_RMarkdown/"><strong>Tutorial de RMarkdown</strong></a></p>
-
-  <p><a href="https://lcstoshio.github.io/Tutorial_graphPRS/"><strong>Tutorial de gráfico de PRS (PRSice)</strong></a></p>
-  
-  <p><a href="https://lcstoshio.github.io/Tutorial_Graphs/"><strong>Tutorial de gráficos (ggplot2)</strong></a></p>
+  <h1>About me</h1>
+  <p>Undergraduate student in biomedicine learning bioinformatics.</p>
   
 </div>
 
 </body>
+
+<footer class="site-footer">
+  <div class="footer-col-wrapper">
+    <div class="footer-col footer-col-1">
+      <ul class="contact-list">
+         <li>Lucas Toshio Ito</li>
+        <li><a style="text-decoration:none" href="mailto:lucas.toshio@unifesp.br">lucas.toshio@unifesp.br</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col footer-col-2">
+      <ul class="social-media-list">
+        <li><a style="text-decoration:none" href="https://github.com/Lcstoshio"><i class="fa fa-github" style="font-size:18px;color:#828282"></i> <span class="username">&nbspLcstoshio</span></a></li>
+        </li>
+        <li><a style="text-decoration:none" href="https://twitter.com/Lcstoshio"><i class="fa fa-twitter" style="font-size:18px;color:#828282"></i><span class="username">&nbsp Lcstoshio</span></a></li>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</footer>
+
 </html>
+
+<!--
+  For single elements use id
+  For multiple elements use class
+  <div id="name of divisions" /div>
+#name{
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+}
+-->
