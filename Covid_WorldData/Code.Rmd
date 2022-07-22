@@ -92,13 +92,7 @@ data %>%
   group_by(indicator)%>%
   summarise(sum(cumulative_count))
 
-# Contagem por país/continente em ordem descendente
-data %>%
-  group_by(country, indicator)%>%
-  summarise(soma = sum(cumulative_count)) %>% 
-  arrange(desc(soma))
-
-# Total casos/mortes por país/continente em ordem descendente
+# Total casos/mortes por país em ordem descendente
 data %>%
   group_by(country, indicator) %>% 
   summarise(soma = sum(cumulative_count)) %>% 
