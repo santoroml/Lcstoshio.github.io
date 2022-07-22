@@ -182,11 +182,6 @@ order <- data %>%
   summarise(soma = sum(cumulative_count)) %>% 
   arrange(desc(soma))
 
-# Ordenar a coluna continente em fatores em ordem decrescente
-#lev <- c(order$continent)
-#data$continent <- factor (data$continent, levels = lev)
-
-
 (data %>%
     ggplot(aes(x=year_week, y=cumulative_count, fill=continent)) + # Coluna de interesse
     geom_col(data=data[data$continent=="Europe",],alpha=0.7) + # Estética das barras e eixo y com frequência absoluta
@@ -240,11 +235,7 @@ order <- data %>%
 # Separando em gráficos diferentes
 (data %>%
     ggplot(aes(x=year_week, y=cumulative_count, fill=continent)) + # Coluna de interesse
-    geom_col(data=data[data$continent=="Europe",],alpha=0.7) + # Estética das barras e eixo y com frequência absoluta
-    geom_col(data=data[data$continent=="America",],alpha=0.7) +
-    geom_col(data=data[data$continent=="Asia",],alpha=0.7) +
-    geom_col(data=data[data$continent=="Africa",],alpha=0.7) +
-    geom_col(data=data[data$continent=="Oceania",],alpha=0.7) +
+    geom_col()+
     theme_bw()+
     theme(strip.text = element_text(size=12, color="white", family="Bangers"), # Formatação dos textos e eixos
           legend.title = element_text(size=12, color="Black", family="Merriweather", face="bold.italic"),
