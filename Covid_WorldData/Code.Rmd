@@ -1,5 +1,5 @@
 ---
-title: "Covid_WorldData"
+title: "Covid World Data"
 author: "Lucas Toshio Ito"
 date: "`r Sys.Date()`"
 output: 
