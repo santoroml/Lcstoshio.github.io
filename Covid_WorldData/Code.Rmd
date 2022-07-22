@@ -208,30 +208,6 @@ order <- data %>%
 ```
 
 ```{r}
-# Gráfico de pontos
-(data %>%
-    ggplot(aes(x=year_week, y=cumulative_count, color=continent)) + # Coluna de interesse
-    stat_summary(geom="point") + # Estética das barras e eixo y com frequência absoluta
-    theme_bw()+
-    theme(strip.text = element_text(size=12, color="white", family="Bangers"), # Formatação dos textos e eixos
-          legend.title = element_text(size=12, color="Black", family="Merriweather", face="bold.italic"),
-          strip.background = element_rect (fill="gray24"),
-          plot.title = element_text(family = "Playfair", color="black", size=20, face="bold.italic"),
-          axis.title = element_text(family = "Lato", color="black", size = 12, face="bold"),
-          axis.text = element_text(family = "Lato", color="black", size = 10, face="bold"),
-          axis.text.y = element_text(angle=45))+
-    labs(title = "Cumulative Cases and Deaths by continent", # Título, subtítulo e títulos dos eixos
-         x = "Date (weeks/year)", 
-         y = "Count",
-         color = "Continent") + 
-     scale_fill_brewer(palette="Set1") + # Cor das barras
-     scale_color_brewer(palette="Set1") + # Cor do contorno das barras
-     scale_y_continuous(labels = scales::label_comma()) +
-     guides(color = guide_legend(override.aes = list(size = 5)))+ # Bolinhas da legenda
-     facet_wrap(~indicator, nrow = 1, scales = "free")) # Segunda variável separando o gráfico em mais gráficos
-```
-
-```{r}
 # Separando em gráficos diferentes
 (data %>%
     ggplot(aes(x=year_week, y=cumulative_count, fill=continent)) + # Coluna de interesse
