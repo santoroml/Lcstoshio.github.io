@@ -13,7 +13,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE, out.width = "100%",
                       fig.showtext = TRUE, retina = 1)
 ```
 
-# **Contagem de Casos e Mortes de Covid-19 no mundo**
+# **Manipulando banco de dados**
 
 [**Página com arquivo do script em RMarkdown**](https://github.com/Lcstoshio/Lcstoshio.github.io/blob/main/Covid_WorldData/Code.Rmd)
 
