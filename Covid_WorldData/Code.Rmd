@@ -101,29 +101,6 @@ data %>%
 
 # **Gráficos**
 
-## **Gráfico de contagens no mundo**
-
-```{r message=FALSE, warning=FALSE}
-(data %>%
-    ggplot(aes(x=year_week, y=cumulative_count, fill=indicator)) + # Coluna de interesse
-    geom_col(position = 'dodge') + # Estética das barras e eixo y com frequência absoluta
-    theme_bw()+
-    theme(legend.position = "none", # Formatação dos textos e eixos
-          strip.text = element_text(size=12, color="white", family="Bangers"), 
-          strip.background = element_rect (fill="gray24"),
-          plot.title = element_text(family = "Playfair", color="black", size=20, face="bold.italic"),
-          axis.title = element_text(family = "Lato", color="black", size = 12, face="bold"),
-          axis.text = element_text(family = "Lato", color="black", size = 10, face="bold"),
-          axis.text.y = element_text(angle=45))+
-    labs(title = "Cases and Deaths in the World", # Título, subtítulo e títulos dos eixos
-         x = "Date (weeks/year)", 
-         y = "Count") + 
-     scale_fill_brewer(palette="Set1") + # Cor das barras
-     scale_color_brewer(palette="Set1") + # Cor do contorno das barras
-     scale_y_continuous(labels = scales::label_comma()) + 
-     facet_wrap(~indicator, nrow = 1, scales = "free")) # Segunda variável separando o gráfico em mais gráficos
-```
-
 ## **Gráfico de contagens no Brasil**
 
 ```{r message=FALSE, warning=FALSE}
@@ -138,7 +115,30 @@ data %>%
           axis.title = element_text(family = "Lato", color="black", size = 12, face="bold"),
           axis.text = element_text(family = "Lato", color="black", size = 10, face="bold"),
           axis.text.y = element_text(angle=45))+
-    labs(title = "Cases and Deaths in Brazil", # Título, subtítulo e títulos dos eixos
+    labs(title = "Cumulative Cases and Deaths in Brazil", # Título, subtítulo e títulos dos eixos
+         x = "Date (weeks/year)", 
+         y = "Count") + 
+     scale_fill_brewer(palette="Set1") + # Cor das barras
+     scale_color_brewer(palette="Set1") + # Cor do contorno das barras
+     scale_y_continuous(labels = scales::label_comma()) + 
+     facet_wrap(~indicator, nrow = 1, scales = "free")) # Segunda variável separando o gráfico em mais gráficos
+```
+
+## **Gráfico de contagens no mundo**
+
+```{r message=FALSE, warning=FALSE}
+(data %>%
+    ggplot(aes(x=year_week, y=cumulative_count, fill=indicator)) + # Coluna de interesse
+    geom_col() + # Estética das barras e eixo y com frequência absoluta
+    theme_bw()+
+    theme(legend.position = "none", # Formatação dos textos e eixos
+          strip.text = element_text(size=12, color="white", family="Bangers"), 
+          strip.background = element_rect (fill="gray24"),
+          plot.title = element_text(family = "Playfair", color="black", size=20, face="bold.italic"),
+          axis.title = element_text(family = "Lato", color="black", size = 12, face="bold"),
+          axis.text = element_text(family = "Lato", color="black", size = 10, face="bold"),
+          axis.text.y = element_text(angle=45))+
+    labs(title = "Cumulative Cases and Deaths in the World", # Título, subtítulo e títulos dos eixos
          x = "Date (weeks/year)", 
          y = "Count") + 
      scale_fill_brewer(palette="Set1") + # Cor das barras
@@ -162,7 +162,7 @@ data %>%
           axis.title = element_text(family = "Lato", color="black", size = 12, face="bold"),
           axis.text = element_text(family = "Lato", color="black", size = 10, face="bold"),
           axis.text.y = element_text(angle=45))+
-    labs(title = "Cases and Deaths by continent (total - stacked)", # Título, subtítulo e títulos dos eixos
+    labs(title = "Cumulative Cases and Deaths in the World", # Título, subtítulo e títulos dos eixos
          x = "Date (weeks/year)", 
          y = "Count",
          fill = "Continent") + 
@@ -197,7 +197,7 @@ order <- data %>%
           axis.title = element_text(family = "Lato", color="black", size = 12, face="bold"),
           axis.text = element_text(family = "Lato", color="black", size = 10, face="bold"),
           axis.text.y = element_text(angle=45))+
-    labs(title = "Cases and Deaths by continent", # Título, subtítulo e títulos dos eixos
+    labs(title = "Cumulative Cases and Deaths by continent", # Título, subtítulo e títulos dos eixos
          x = "Date (weeks/year)", 
          y = "Count",
          fill = "Continent") + 
@@ -220,7 +220,7 @@ order <- data %>%
           axis.title = element_text(family = "Lato", color="black", size = 12, face="bold"),
           axis.text = element_text(family = "Lato", color="black", size = 10, face="bold"),
           axis.text.y = element_text(angle=45))+
-    labs(title = "Cases and Deaths by continent", # Título, subtítulo e títulos dos eixos
+    labs(title = "Cumulative Cases and Deaths by continent", # Título, subtítulo e títulos dos eixos
          x = "Date (weeks/year)", 
          y = "Count",
          color = "Continent") + 
@@ -245,7 +245,7 @@ order <- data %>%
           axis.text = element_text(family = "Lato", color="black", size = 10, face="bold"),
           axis.text.y = element_text(angle=45),
           axis.text.x = element_text(size = 5))+
-    labs(title = "Cases and Deaths by continent", # Título, subtítulo e títulos dos eixos
+    labs(title = "Cumulative Cases and Deaths by continent", # Título, subtítulo e títulos dos eixos
          x = "Date (weeks/year)", 
          y = "Count",
          fill = "Continent") + 
