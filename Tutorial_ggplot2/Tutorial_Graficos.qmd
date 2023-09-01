@@ -51,7 +51,7 @@ css: styles.css
 </a>
 
 ::: {.content-hidden}
-{{< fa brands twitter >}}
+{{< fa thumbs-up >}}
 :::
 
 ```{r}
@@ -59,7 +59,7 @@ css: styles.css
 Sys.setlocale("LC_TIME", "C")
 ```
 
-**Date:** `r format(Sys.time(), '%B %d, %Y')`
+**Date:** `r format(Sys.time(), '%B %d, %Y')` `    ` {{< fa regular calendar >}}
 :::
 
 ```{r}
@@ -654,14 +654,14 @@ ggplotly(surto %>% # Data.frame
      theme_minimal()+ # Tema com fundo branco
      theme(plot.title = element_text(size=20, face="bold.italic"))+ # Aumentar o tamanho do título e deixar em negrito/itálico
      labs(title = "Boxplot", # Título
-         subtitle = "Número de leucócitos no sangue x Ocupação", # Subtítulo
+         subtitle = "Valor de leucócitos x Ocupação", # Subtítulo
          x = "Ocupação", # Título do eixo x
-         y = "Número de Leucócitos", # Título do eixo y
+         y = "Leucócitos (uL)", # Título do eixo y
          color = "Ocupação") + # Título da legenda
      scale_color_brewer(palette="Set1")) %>% # Cor das barras
      layout(title = list(text = paste0('<b>','Box Plot','<b>',
                                     '<br>',
-                                    '<sup>','Número de leucócitos no sangue x Ocupação', '</sup>')))
+                                    '<sup>','Valor de leucócitos x Ocupação', '</sup>')))
 
 # Gráfico de dispersão
 ggplotly(surto %>% # Data.frame
@@ -672,14 +672,14 @@ ggplotly(surto %>% # Data.frame
      theme(plot.title = element_text(size=20, face="bold.italic"), # Aumentar o tamanho do título e deixar em negrito/itálico
            plot.subtitle = element_text(size=12, color="gray34", face="bold.italic"))+ # Aumentar o tamanho do subtítulo e deixar em negrito/itálico
      labs(title = "Gráfico de Dispersão", # Título
-         subtitle = "Nível de hemoglobina x Número de Leucócitos x Sexo", # Subtítulo
+         subtitle = "Valor de hemoglobina x Valor de Leucócitos x Sexo", # Subtítulo
          x = "Hemoglobina (g/dL)", # Título do eixo x
-         y = "Número de Leucócitos (uL)", # Título do eixo y
+         y = "Leucócitos (uL)", # Título do eixo y
          color = "Sexo")+ # Título da legenda
      scale_color_manual(values = c("dodgerblue4", "darkgoldenrod2"))) %>% # Cor das bolinhas
      layout(title = list(text = paste0('<b>','Gráfico de Dispersão','<b>',
                                     '<br>',
-                                    '<sup>','Nível de hemoglobina x Número de Leucócitos x Sexo', '</sup>')))
+                                    '<sup>','Valor de hemoglobina x Valor de Leucócitos x Sexo', '</sup>')))
 ```
 
 # **Referências**      
@@ -696,7 +696,7 @@ ggplotly(surto %>% # Data.frame
 - [https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)
 - [https://allisonhorst.github.io/rice-data-viz/](https://allisonhorst.github.io/rice-data-viz/)
 - [https://ggplot2.tidyverse.org/reference/](https://ggplot2.tidyverse.org/reference/)
-- [https://drive.google.com/file/d/162k9AEg76d34XLodwFq5lmbz5hNR5sfW/view?usp=sharing](https://drive.google.com/file/d/162k9AEg76d34XLodwFq5lmbz5hNR5sfW/view?usp=sharing)
+- [Cheatsheet ggplot2](https://drive.google.com/file/d/162k9AEg76d34XLodwFq5lmbz5hNR5sfW/view?usp=sharing)
 
 </body>
 </font>
