@@ -203,11 +203,9 @@ O número de variáveis, o tipo de variável e qual seu objetivo na análise det
 
 ------------------------------------------------------------------------
 
-# **Gráficos com 1 variável**
+# **Gráficos de Barras**
 
-------------------------------------------------------------------------
-
-## **Gráficos de Barras**
+## **1 variável**
 
 ### **(N) Simples**
 
@@ -261,37 +259,52 @@ O número de variáveis, o tipo de variável e qual seu objetivo na análise det
      scale_fill_brewer(palette="Set2")) # Cor das barras
 ```
 
-------------------------------------------------------------------------
-
-## **Histogramas**
-
-### **Simples**
+## **2 variáveis**
 
 ```{r}
 (surto %>% # Data.frame
-     ggplot(aes(x = hb)) + # Coluna de interesse 
-     geom_histogram()) # Formato de histograma
-```
-
-### **Completo**
-
-```{r}
-(surto %>% # Data.frame
-     ggplot(aes(x = hb)) + # Coluna de interesse 
-     geom_histogram(bins = 30, fill = "midnightblue", color = "gray88")+ # Formato de histograma e determinar o número de grupos e as cores do histograma
+     ggplot(aes(x = ocupa, fill = sexo)) + # Coluna de interesse 
+     geom_bar(aes(y = (after_stat(count))/sum(after_stat(count))))+ # Formato de barras na forma de porcentagem relativa
+     scale_y_continuous(labels=scales::percent, #mudança de escala do eixo y para percentual
+                        limits=c(0, 1))+ #limite do eixo y
      theme_minimal() + # Tema com fundo branco
      theme(plot.title = element_text(size=20, face="bold.italic"), # Aumentar o tamanho do título e deixar em negrito/itálico
            plot.subtitle = element_text(size=12, color="gray34", face="bold.italic"))+ # Aumentar o tamanho do subtítulo e deixar em negrito/itálico
-     labs(title = "Histograma", # Título
-         subtitle = "Valor de hemoglobina", # Subtítulo
-         x = "Hemoglobina (g/dL)", # Título do eixo x
-         y = "Frequência Absoluta (N)", # Título do eixo y
-         fill = "")) # Título da legenda
+     labs(title = "Gráfico de Barras", # Título
+         subtitle = "Ocupação x Sexo", # Subtítulo
+         x = "Ocupação", # Título do eixo x
+         y = "Frequência Relativa (%)", # Título do eixo y
+         fill = "Sexo")+ # Título da legenda
+     scale_fill_brewer(palette="Set1")) # Cor das barras
+```
+
+## **3 variáveis**
+
+```{r}
+(surto %>% # Data.frame
+     ggplot(aes(x = caso, fill = agua)) + # Coluna de interesse 
+     geom_bar(aes(y = (after_stat(count))/sum(after_stat(count))))+ # Formato de barras na forma de porcentagem relativa
+     scale_y_continuous(labels=scales::percent, #mudança de escala do eixo y para percentual
+                        limits=c(0, 1))+ #limite do eixo y
+     theme_bw()+ # Tema com fundo branco e contorno preto
+     theme(plot.title = element_text(size=20, face="bold.italic"), # Aumentar o tamanho do título e deixar em negrito/itálico
+           plot.subtitle = element_text(size=12, color="gray34", face="bold.italic"), # Aumentar o tamanho do subtítulo e deixar em negrito/itálico
+           strip.text = element_text(size=12, color="white"), # Alterar a cor do texto da faceta
+           strip.background = element_rect (fill="gray20"))+ # Alterar a cor de fundo da faceta       
+     labs(title = "Gráfico de Barras", # Título
+         subtitle = "Caso de intoxicação alimentar x Água x Sexo", # Subtítulo
+         x = "Intoxicação alimentar", # Título do eixo x
+         y = "Frequência Relativa (%)", # Título do eixo y
+         fill = "Bebeu\nÁgua?")+ # Título da legenda
+     scale_fill_manual(values = c("cornflowerblue", "dodgerblue4"))+ # Cor das barras
+     facet_wrap(~sexo)) # Separar em facetas
 ```
 
 ------------------------------------------------------------------------
 
-## **Gráficos de Pizza ou Setores**
+# **Gráficos de Pizza ou Setores**
+
+## **1 variável**
 
 ### **Simples**
 
@@ -329,7 +342,76 @@ Não consegui adicionar de uma forma boa os números no gráfico
 
 ------------------------------------------------------------------------
 
-## **Boxplots**
+# **Histogramas**
+
+## **1 variável**
+
+### **Simples**
+
+```{r}
+(surto %>% # Data.frame
+     ggplot(aes(x = hb)) + # Coluna de interesse 
+     geom_histogram()) # Formato de histograma
+```
+
+### **Completo**
+
+```{r}
+(surto %>% # Data.frame
+     ggplot(aes(x = hb)) + # Coluna de interesse 
+     geom_histogram(bins = 40, fill = "midnightblue", color = "gray88")+ # Formato de histograma e determinar o número de "caixas" e as cores do histograma
+     theme_minimal() + # Tema com fundo branco
+     theme(plot.title = element_text(size=20, face="bold.italic"), # Aumentar o tamanho do título e deixar em negrito/itálico
+           plot.subtitle = element_text(size=12, color="gray34", face="bold.italic"))+ # Aumentar o tamanho do subtítulo e deixar em negrito/itálico
+     labs(title = "Histograma", # Título
+         subtitle = "Valor de hemoglobina", # Subtítulo
+         x = "Hemoglobina (g/dL)", # Título do eixo x
+         y = "Frequência Absoluta (N)", # Título do eixo y
+         fill = "")) # Título da legenda
+```
+
+## **2 variáveis**
+
+```{r}
+(surto %>% # Data.frame
+     ggplot(aes(x = hb)) + # Coluna de interesse 
+     geom_histogram(aes(fill = sexo), bins = 40, color = "gray88")+ # Formato de histograma e determinar o número de "caixas" e as cores do histograma
+     theme_minimal() + # Tema com fundo branco
+     theme(plot.title = element_text(size=20, face="bold.italic"), # Aumentar o tamanho do título e deixar em negrito/itálico
+           plot.subtitle = element_text(size=12, color="gray34", face="bold.italic"))+ # Aumentar o tamanho do subtítulo e deixar em negrito/itálico
+     labs(title = "Histograma", # Título
+         subtitle = "Valor de hemoglobina x Sexo", # Subtítulo
+         x = "Hemoglobina (g/dL)", # Título do eixo x
+         y = "Frequência Absoluta (N)", # Título do eixo y
+         fill = "Sexo")+ # Título da legenda
+     scale_fill_brewer(palette="Set1")) # Cor das barras
+```
+
+## **3 variáveis**
+
+```{r}
+(surto %>% # Data.frame
+     ggplot(aes(x = hb)) + # Coluna de interesse 
+     geom_histogram(aes(fill = sexo), bins = 30, color = "gray88")+ # Formato de histograma e determinar o número de "caixas" e as cores do histograma
+     theme_bw() + # Tema com fundo branco
+     theme(plot.title = element_text(size=20, face="bold.italic"), # Aumentar o tamanho do título e deixar em negrito/itálico
+           plot.subtitle = element_text(size=12, color="gray34", face="bold.italic"), # Aumentar o tamanho do subtítulo e deixar em negrito/itálico
+           strip.text = element_text(size=12, color="white"), # Alterar a cor do texto da faceta
+           strip.background = element_rect (fill="gray20"))+ # Alterar a cor de fundo da faceta    
+     labs(title = "Histograma", # Título
+         subtitle = "Valor de hemoglobina x Sexo x Caso de intoxicação alimentar", # Subtítulo
+         x = "Hemoglobina (g/dL)", # Título do eixo x
+         y = "Frequência Absoluta (N)", # Título do eixo y
+         fill = "Sexo")+ # Título da legenda
+     scale_fill_brewer(palette="Set1")+ # Cor das barras
+     facet_wrap(~caso)) # Separar em facetas
+```
+
+------------------------------------------------------------------------
+
+# **Boxplots**
+
+## **1 variável**
 
 ### **Simples**
 
@@ -351,12 +433,51 @@ Não consegui adicionar de uma forma boa os números no gráfico
      labs(title = "Boxplot", # Título
          subtitle = "Valor de leucócitos", # Subtítulo
          x = "", # Título do eixo x
-         y = "Leucócitos (uL)")) # Título do eixo y
+         y = "Número de Leucócitos (uL)")) # Título do eixo y
+```
+
+## **2 variáveis**
+
+```{r}
+(surto %>% # Data.frame
+     ggplot(aes(y = leuco, x = ocupa, color = ocupa)) + # Coluna de interesse 
+     geom_boxplot()+ # Formato de boxplot
+     theme_minimal()+ # Tema com fundo branco
+     theme(plot.title = element_text(size=20, face="bold.italic"), # Aumentar o tamanho do título e deixar em negrito/itálico
+           plot.subtitle = element_text(size=12, color="gray34", face="bold.italic"))+ # Aumentar o tamanho do subtítulo e deixar em negrito/itálico
+     labs(title = "Boxplot", # Título
+         subtitle = "Valor de leucócitos x Ocupação", # Subtítulo
+         x = "Ocupação", # Título do eixo x
+         y = "Número de Leucócitos (uL)", # Título do eixo y
+         color = "Ocupação") + # Título da legenda
+     scale_color_brewer(palette="Set1")) # Cor dos gráficos
+```
+
+## **3 variáveis**
+
+```{r}
+(surto %>% # Data.frame
+     ggplot(aes(y = leuco, x = caso, color = caso)) + # Coluna de interesse 
+     geom_boxplot()+ # Formato de boxplot
+     theme_bw()+ # Tema com fundo branco e contorno preto
+     theme(plot.title = element_text(size=20, face="bold.italic"), # Aumentar o tamanho do título e deixar em negrito/itálico
+           plot.subtitle = element_text(size=12, color="gray34", face="bold.italic"), # Aumentar o tamanho do subtítulo e deixar em negrito/itálico
+           strip.text = element_text(size=12, color="white"), # Alterar a cor do texto da faceta
+           strip.background = element_rect (fill="gray20"))+ # Alterar a cor de fundo da faceta 
+     labs(title = "Boxplot", # Título
+         subtitle = "Valor de leucócitos x Ocupação x Intoxicação alimentar", # Subtítulo
+         x = "Intoxicação alimentar", # Título do eixo x
+         y = "Número de Leucócitos (uL)", # Título do eixo y
+         color = "Caso de intoxicação\nalimentar") + # Título da legenda
+     scale_color_brewer(palette="Set1")+ # Cor dos gráficos
+     facet_wrap(~ocupa)) # Separar em facetas
 ```
 
 ------------------------------------------------------------------------
 
-## **Gráficos de Densidade**
+# **Gráficos de Densidade**
+
+## **1 variável**
 
 ### **Simples**
 
@@ -371,7 +492,7 @@ Não consegui adicionar de uma forma boa os números no gráfico
 ```{r}
 (surto %>% # Data.frame
      ggplot(aes(x = hb)) + # Coluna de interesse 
-     geom_density(fill = "firebrick4", color = "gray88")+ # Formato de histograma e determinar o número de grupos e as cores do histograma
+     geom_density(fill = "firebrick3", color = "gray88")+ # Formato de histograma e determinar o número de grupos e as cores do histograma
      geom_vline(aes(xintercept=mean(hb)), color="black", linetype="dashed", size=1)+ #linha da média
      theme_minimal() + # Tema com fundo branco
      theme(plot.title = element_text(size=20, face="bold.italic"), # Aumentar o tamanho do título e deixar em negrito/itálico
@@ -383,72 +504,7 @@ Não consegui adicionar de uma forma boa os números no gráfico
          fill = "")) # Título da legenda
 ```
 
-------------------------------------------------------------------------
-
-# **Gráficos com 2 variáveis**
-
-------------------------------------------------------------------------
-
-## **Gráficos de Barras**
-
-```{r}
-(surto %>% # Data.frame
-     ggplot(aes(x = ocupa, fill = sexo)) + # Coluna de interesse 
-     geom_bar(aes(y = (after_stat(count))/sum(after_stat(count))))+ # Formato de barras na forma de porcentagem relativa
-     scale_y_continuous(labels=scales::percent, #mudança de escala do eixo y para percentual
-                        limits=c(0, 1))+ #limite do eixo y
-     theme_minimal() + # Tema com fundo branco
-     theme(plot.title = element_text(size=20, face="bold.italic"), # Aumentar o tamanho do título e deixar em negrito/itálico
-           plot.subtitle = element_text(size=12, color="gray34", face="bold.italic"))+ # Aumentar o tamanho do subtítulo e deixar em negrito/itálico
-     labs(title = "Gráfico de Barras", # Título
-         subtitle = "Ocupação x Sexo", # Subtítulo
-         x = "Ocupação", # Título do eixo x
-         y = "Frequência Relativa (%)", # Título do eixo y
-         fill = "Sexo")+ # Título da legenda
-     scale_fill_brewer(palette="Set1")) # Cor das barras
-```
-
-------------------------------------------------------------------------
-
-## **Histogramas**
-
-```{r}
-(surto %>% # Data.frame
-     ggplot(aes(x = hb)) + # Coluna de interesse 
-     geom_histogram(aes(fill = sexo), bins = 30, color = "gray88")+ # Formato de histograma e determinar o número de grupos e as cores do histograma
-     theme_minimal() + # Tema com fundo branco
-     theme(plot.title = element_text(size=20, face="bold.italic"), # Aumentar o tamanho do título e deixar em negrito/itálico
-           plot.subtitle = element_text(size=12, color="gray34", face="bold.italic"))+ # Aumentar o tamanho do subtítulo e deixar em negrito/itálico
-     labs(title = "Histograma", # Título
-         subtitle = "Valor de hemoglobina x Sexo", # Subtítulo
-         x = "Hemoglobina (g/dL)", # Título do eixo x
-         y = "Frequência Absoluta (N)", # Título do eixo y
-         fill = "Sexo")+ # Título da legenda
-     scale_fill_brewer(palette="Set1")) # Cor das barras
-```
-
-------------------------------------------------------------------------
-
-## **Boxplots**
-
-```{r}
-(surto %>% # Data.frame
-     ggplot(aes(y = leuco, x = ocupa, color = ocupa)) + # Coluna de interesse 
-     geom_boxplot()+ # Formato de boxplot
-     theme_minimal()+ # Tema com fundo branco
-     theme(plot.title = element_text(size=20, face="bold.italic"), # Aumentar o tamanho do título e deixar em negrito/itálico
-           plot.subtitle = element_text(size=12, color="gray34", face="bold.italic"))+ # Aumentar o tamanho do subtítulo e deixar em negrito/itálico
-     labs(title = "Boxplot", # Título
-         subtitle = "Valor de leucócitos x Ocupação", # Subtítulo
-         x = "Ocupação", # Título do eixo x
-         y = "Leucócitos (uL)", # Título do eixo y
-         color = "Ocupação") + # Título da legenda
-     scale_color_brewer(palette="Set1")) # Cor dos gráficos
-```
-
-------------------------------------------------------------------------
-
-## **Gráficos de Densidade**
+## **2 variáveis**
 
 ```{r}
 (surto %>% # Data.frame
@@ -466,9 +522,32 @@ Não consegui adicionar de uma forma boa os números no gráfico
      scale_fill_brewer(palette="Set1")) # Cor dos gráficos
 ```
 
+## **3 variáveis**
+
+```{r}
+(surto %>% # Data.frame
+     ggplot(aes(x = hb, fill = caso)) + # Coluna de interesse 
+     geom_density(color = "gray88", alpha = 0.5)+ # Formato de histograma e determinar o número de grupos e as cores do histograma
+     geom_vline(aes(xintercept=mean(hb)), color="black", linetype="dashed", size=1)+ #linha da média
+     theme_bw() + # Tema com fundo branco
+     theme(plot.title = element_text(size=20, face="bold.italic"), # Aumentar o tamanho do título e deixar em negrito/itálico
+           plot.subtitle = element_text(size=12, color="gray34", face="bold.italic"), # Aumentar o tamanho do subtítulo e deixar em negrito/itálico
+           strip.text = element_text(size=12, color="white"), # Alterar a cor do texto da faceta
+           strip.background = element_rect (fill="gray20"))+ # Alterar a cor de fundo da faceta 
+     labs(title = "Gráfico de Densidade", # Título
+         subtitle = "Valor de hemoglobina x Caso de intoxicação alimentar x Sexo", # Subtítulo
+         x = "Hemoglobina (g/dL)", # Título do eixo x
+         y = "Densidade", # Título do eixo y
+         fill = "Caso de intoxicação\nalimentar?")+ # Título da legenda
+     scale_fill_brewer(palette="Set1")+ # Cor dos gráficos
+     facet_wrap(~sexo)) # Separar em facetas
+```
+
 ------------------------------------------------------------------------
 
-## **Gráficos de Dispersão**
+# **Gráficos de Dispersão**
+
+## **2 variáveis**
 
 ### **Simples**
 
@@ -494,59 +573,7 @@ Não consegui adicionar de uma forma boa os números no gráfico
          y = "Leucócitos (uL)")) # Título do eixo y
 ```
 
-------------------------------------------------------------------------
-
-# **Gráficos com 3 variáveis**
-
-------------------------------------------------------------------------
-
-## **Gráficos de Barras**
-
-```{r}
-(surto %>% # Data.frame
-     ggplot(aes(x = caso, fill = agua)) + # Coluna de interesse 
-     geom_bar(aes(y = (after_stat(count))/sum(after_stat(count))))+ # Formato de barras na forma de porcentagem relativa
-     scale_y_continuous(labels=scales::percent, #mudança de escala do eixo y para percentual
-                        limits=c(0, 1))+ #limite do eixo y
-     theme_bw()+ # Tema com fundo branco e contorno preto
-     theme(plot.title = element_text(size=20, face="bold.italic"), # Aumentar o tamanho do título e deixar em negrito/itálico
-           plot.subtitle = element_text(size=12, color="gray34", face="bold.italic"), # Aumentar o tamanho do subtítulo e deixar em negrito/itálico
-           strip.text = element_text(size=12, color="white"), # Alterar a cor do texto da faceta
-           strip.background = element_rect (fill="gray20"))+ # Alterar a cor de fundo da faceta       
-     labs(title = "Gráfico de Barras", # Título
-         subtitle = "Caso de intoxicação alimentar x Água x Sexo", # Subtítulo
-         x = "Intoxicação alimentar", # Título do eixo x
-         y = "Frequência Relativa (%)", # Título do eixo y
-         fill = "Bebeu\nÁgua?")+ # Título da legenda
-     scale_fill_manual(values = c("cornflowerblue", "dodgerblue4"))+ # Cor das barras
-     facet_wrap(~sexo)) # Separar em facetas
-```
-
-------------------------------------------------------------------------
-
-## **Boxplots**
-
-```{r}
-(surto %>% # Data.frame
-     ggplot(aes(y = leuco, x = caso, color = caso)) + # Coluna de interesse 
-     geom_boxplot()+ # Formato de boxplot
-     theme_bw()+ # Tema com fundo branco e contorno preto
-     theme(plot.title = element_text(size=20, face="bold.italic"), # Aumentar o tamanho do título e deixar em negrito/itálico
-           plot.subtitle = element_text(size=12, color="gray34", face="bold.italic"), # Aumentar o tamanho do subtítulo e deixar em negrito/itálico
-           strip.text = element_text(size=12, color="white"), # Alterar a cor do texto da faceta
-           strip.background = element_rect (fill="gray20"))+ # Alterar a cor de fundo da faceta 
-     labs(title = "Boxplot", # Título
-         subtitle = "Valor de leucócitos x Ocupação x Intoxicação alimentar", # Subtítulo
-         x = "Intoxicação alimentar", # Título do eixo x
-         y = "Número de Leucócitos (uL)", # Título do eixo y
-         color = "Caso de intoxicação\nalimentar") + # Título da legenda
-     scale_color_brewer(palette="Set1")+ # Cor dos gráficos
-     facet_wrap(~ocupa)) # Separar em facetas
-```
-
-------------------------------------------------------------------------
-
-## **Gráficos de dispersão**
+## **3 variáveis**
 
 ```{r}
 (surto %>% # Data.frame
@@ -561,12 +588,12 @@ Não consegui adicionar de uma forma boa os números no gráfico
          x = "Hemoglobina (g/dL)", # Título do eixo x
          y = "Leucócitos (uL)", # Título do eixo y
          color = "Sexo")+ # Título da legenda
-     scale_color_manual(values = c("dodgerblue4", "darkgoldenrod2"))) # Cor das bolinhas
+     scale_color_manual(values = c("dodgerblue4", "darkgoldenrod2"))) # Cor das bolinhas e linhas
 ```
 
 ------------------------------------------------------------------------
 
-## **Matriz de Correlação**
+# **Matriz de Correlação**
 
 ```{r}
 # Gerando matrix de correlação de pearson e p-valores somente com as variáeis quantitativas
@@ -592,8 +619,6 @@ ggcorrplot::ggcorrplot(matrix$r, # a matriz a ser visualizada
 
 # **Gráficos sobrepostos**
 
-------------------------------------------------------------------------
-
 ## **Histogramas + Gráficos de densidade**
 
 ```{r}
@@ -613,8 +638,6 @@ media <- ddply(surto, "caso", summarise, grp.mean=mean(leuco, na.rm=TRUE))
          fill = "Caso de intoxicação\nalimentar?")+ # Título da legenda
      scale_fill_brewer(palette="Set1")) # Cor dos gráficos
 ```
-
-------------------------------------------------------------------------
 
 ## **Boxplots + Gráficos de Dispersão + Gráficos de Violino (Raincloud Plot)**
 
@@ -644,7 +667,7 @@ Convertendo gráfico ggplot2 em gráfico plotly (interativo).
 
 Ele perde um pouco da edição estética, mas permite explorar os dados do gráfico. Ele pode ser usado em qualquer tipo de gráfico, mas geralmente prefiro usar em box plots, scatter plots, heatmaps e mapas.  
 
-Também podemos alterar otros detalhes com algumas soluções alternativa, porém são um pouco mais complicadas.  
+Também podemos alterar outros detalhes com algumas soluções alternativa, porém são um pouco mais complicadas.  
 
 ```{r}
 # Box Plot
@@ -697,6 +720,19 @@ ggplotly(surto %>% # Data.frame
 - [https://allisonhorst.github.io/rice-data-viz/](https://allisonhorst.github.io/rice-data-viz/)
 - [https://ggplot2.tidyverse.org/reference/](https://ggplot2.tidyverse.org/reference/)
 - [Cheatsheet ggplot2](https://drive.google.com/file/d/162k9AEg76d34XLodwFq5lmbz5hNR5sfW/view?usp=sharing)
+
+
+# **Exercícios**  
+
+1 - Filtre os indivíduos com caso de intoxicação alimentar e crie um gráfico de barras com o nível de gravidade desses indivíduos, posteriormente no pinte o gráfico de acordo com o sexo dos indivíduos. Indique qual grau de gravidade é o mais prevalente na amostra.  
+
+2 - Crie um histograma usando o valor de triglicérides e divida o histograma em 50 caixas.  
+
+3 - Filtre os indivíduos com caso de intoxicação alimentar e crie um boxplot com o valor de leucócitos desses indivíduos separado pelo nível de gravidade da intoxicação alimentar. Indique qual grau de gravidade possui maior mediana.  
+
+4 - Usando ggplot, crie um gráfico de dispersão representando o valor de leucócitos e o valor de triglicérides. Indique se há indícios de uma correlação positiva, negativa ou ausência de correlação entre essas variáveis.  
+
+5 - Utilizando quaisquer duas variáveis do banco de dados (não repita exemplos deste tutorial!), crie um gráfico e descreva quais informações o gráfico lhe fornece. O tipo de gráfico pode ser o que você quiser.  
 
 </body>
 </font>
