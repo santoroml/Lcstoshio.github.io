@@ -1,7 +1,7 @@
 ---
 title: "Tutorial Gráficos"
 author:
-  - name: Lucas Toshio Ito
+  - name: Lucas Toshio Ito (Editado Por Marcos Santoro)
     orcid: 0000-0001-9713-8687
     email: lucas.toshio@unifesp.br
     affiliations:
