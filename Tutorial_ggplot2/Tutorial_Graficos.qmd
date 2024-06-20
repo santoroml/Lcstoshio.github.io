@@ -1,7 +1,7 @@
 ---
 title: "Tutorial Gráficos"
 author:
-  - name: Lucas Toshio Ito
+  - name: Lucas Toshio Ito (editado por Marcos Santoro)
     orcid: 0000-0001-9713-8687
     email: lucas.toshio@unifesp.br
     affiliations:
@@ -90,6 +90,11 @@ library(plotly) # gráficos interativos
 ```
 
 ------------------------------------------------------------------------
+# ** Curso de BioInfo: Aula 2 de gráficos no R**
+
+Esse html e os scripts abaixo foram preparados pelo alunode doutorado Lucas Toshio Ito para um outro curso e adaptado por mim (Marcos Santoro) para a aula de hoje.
+
+Divirtam-se!
 
 # **Por que utilizar gráficos?**
 
@@ -97,7 +102,7 @@ library(plotly) # gráficos interativos
 
 Para cada tipo de variável há uma representação mais adequada de gráficos e tabelas. Nesse tutorial, focaremos na elaboração de gráficos que mostrem adequadamente os resultados que queremos visualizar. Afinal, uma tabela nem sempre resume os dados de forma eficiente, por isso os gráficos são importantes aliados.  
 
-Visualizamos os dados porque é mais fácil aprender com algo que podemos ver em vez de ler. E, felizmente, para os analistas de dados e cientistas de dados que utilizam o R, existe um pacote no tidyverse chamado de ggplot2 que torna fácil a visualização de dados num instante!  
+Visualizamos os dados porque é mais fácil aprender com algo que podemos ver em vez de ler. E, felizmente, para os analistas de dados e cientistas de dados que utilizam o R, existe um pacote chamado de ggplot2 que torna fácil a visualização de dados num instante!  
 
 O ggplot2 é um sistema para criar gráficos, baseado na Gramática dos Gráficos (The Grammar of Graphics), que nos permite criar gráficos de forma rápida e eficiente para descobrir padrões nos nossos dados. Sempre é essencial plotar seus dados para tornar os dados complexos que estão tabelados em uma forma mais simplificada de visuaização.  
 
@@ -119,7 +124,7 @@ Nesse tutorial iremos tratar da estrutura básica do código para utilizar o ggp
 
 Um ggplot padrão precisa de três itens essenciais que você deve especificar: os dados, a estética e uma geometria. Adicionalmente existem outros parâmetros que podemos adicionar, como por exemplo temas visuais.  
 
-1. Dados: Os dados brutos em formato de data frame.
+1. Dados: Os dados em si em formato de data frame.
 2. Estética - aes(): Estética dos objectos geométricos e estatísticos, tais como posição, cor, tamanho, forma e transparência.
 3. Geometrias - geom_: As formas geométricas que representarão os dados (pontos, boxplot, histograma, barras, ...).
 4. Temas visuais - theme(): As predefinições visuais gerais de um gráfico, tais como fundo, eixos, fonte de letra, tamanhos e cores.
@@ -151,46 +156,18 @@ Se você tiver interesse em mais paletas olhe o pacote [{paletter}](https://emil
 
 ------------------------------------------------------------------------
 
-# **Banco de Dados - [Surto.xlsx](https://drive.google.com/file/d/1A3AlnJ_DbB5tCYK7u2zxDDclD1YOoWWE/view?usp=drive_web&authuser=1)**
+# **Banco de Dados - [iris]**
 
-Em novembro de 2018, um surto de intoxicação alimentar por enterotoxina estafilocócica ocorreu após pessoas almoçarem em um simpósio, promovido por uma universidade privada, no município de Verde Oliva.  
-
-A alimentação servida foi preparada na cozinha de uma empresa terceirizada e enviada ao local do evento por meio de vans sem refrigeração. O cardápio foi composto por: salada de folhas verdes, tomate, cenoura e pepino, pão francês, medalhão ao molho madeira, macarrão espaguete sem molho, molho de queijo, molho ao sugo, pudim de leite condensado, salada de frutas, suco de laranja e água.  
-
-O almoço ocorreu por volta das 13:00h. Os primeiros casos do surto começaram a apresentar sintomas típicos de intoxicação alimentar, como náusea, vômito, cólica abdominal e diarreia, uma hora após a ingestão dos alimentos.  
-
-No total, 200 pessoas participaram do simpósio. Das 150 pessoas que almoçaram no local do evento, 50 adoeceram. Foram considerados casos do surto as pessoas que apresentaram vômito e/ou diarreia após terem se alimentado com pelo menos um dos itens servidos no evento.  
-
-Com a investigação do surto alimentar pretende-se identificar quais alimentos possivelmente provocaram a intoxicação no evento científico.  
+Iremos utilizar o banco iris para a prática de hoje.  
 
 ```{r}
-surto <- readxl::read_excel("surto.xlsx", 
-                    sheet = "Plan1") 
+df <- iris
+# explore o banco de dados iris e informe:
 
-surto <- mutate(surto, 
-                caso = factor(caso, labels=c('Não','Sim')),
-         sexo = factor(sexo, labels=c("Feminino","Masculino")),
-         ocupa = factor(ocupa),
-         diarreia = factor(diarreia, labels=c('Não','Sim')),
-         colica = factor(colica, labels=c('Não','Sim')),
-         vomito = factor(vomito, labels=c('Não','Sim')),
-         nausea = factor(nausea, labels=c('Não','Sim')),
-         cefaleia = factor(cefaleia, labels=c('Não','Sim')),
-         desidratacao = factor(desidratacao, labels=c('Não','Sim')),
-         febre = factor(febre, labels=c('Não','Sim')),
-         servsaude = factor(servsaude, labels=c('Não','Sim')),
-         gravidade = factor(gravidade,order = TRUE, labels=c('Leve','Moderado',"Grave")),
-         salada = factor(salada, labels=c('Não','Sim')),
-         pao = factor(pao, labels=c('Não','Sim')),
-         medalhao = factor(medalhao, labels=c('Não','Sim')),
-         macarrao = factor(macarrao, labels=c('Não','Sim')),
-         molhoqueijo = factor(molhoqueijo, labels=c('Não','Sim')),
-         molhoverm = factor(molhoverm, labels=c('Não','Sim')),
-         pudim = factor(pudim, labels=c('Não','Sim')),
-         frutas = factor(frutas, labels=c('Não','Sim')),
-         agua = factor(agua, labels=c('Não','Sim')),
-         suco = factor(suco, labels=c('Não','Sim'))
-  )
+# Número de linhas e colunas
+
+# estrutura da tabela e quais tipos de variáveis
+
 ```
 
 ------------------------------------------------------------------------
@@ -210,41 +187,37 @@ O número de variáveis, o tipo de variável e qual seu objetivo na análise det
 ### **(N) Simples**
 
 ```{r}
-(surto %>% # Data.frame
-     ggplot(aes(x = ocupa)) + # Coluna de interesse 
-     geom_bar()) # Formato de barras
+ggplot(iris,aes(x = Species)) + # Coluna de interesse 
+     geom_bar() # Formato de barras
 ```
 
 ### **(N) Completo**
 
 ```{r}
-(surto %>% # Data.frame
-     ggplot(aes(x = ocupa, fill = ocupa)) + # Coluna de interesse 
+ggplot(iris,aes(x = Species, fill = Species)) + # Coluna de interesse 
      geom_bar() + # Formato de barras
      theme_minimal() + # Tema com fundo branco
      theme(plot.title = element_text(size=20, face="bold.italic"), # Aumentar o tamanho do título e deixar em negrito/itálico
            plot.subtitle = element_text(size=12, color="gray34", face="bold.italic"))+ # Aumentar o tamanho do subtítulo e deixar em negrito/itálico
      labs(title = "Gráfico de Barras", # Título
-         subtitle = "Ocupação", # Subtítulo
-         x = "Ocupação", # Título do eixo x
+         subtitle = "Espécies", # Subtítulo
+         x = "Espécies", # Título do eixo x
          y = "Frequência Absoluta (N)", # Título do eixo y
-         fill = "Ocupação")+ # Título da legenda
-     scale_fill_brewer(palette="Set1")) # Cor das barras
+         fill = "Espécies")+ # Título da legenda
+     scale_fill_brewer(palette="Set1") # Cor das barras
 ```
 
 ### **(%) Simples**
 
 ```{r}
-(surto %>% # Data.frame
-     ggplot(aes(x = ocupa)) + # Coluna de interesse 
-     geom_bar(aes(y = (after_stat(count))/sum(after_stat(count))))) # Formato de barras na forma de porcentagem relativa
+ggplot(iris,aes(x = Species)) + # Coluna de interesse 
+     geom_bar(aes(y = (after_stat(count))/sum(after_stat(count)))) # Formato de barras na forma de porcentagem relativa
 ```
 
 ### **(%) Completo**
 
 ```{r}
-(surto %>% # Data.frame
-     ggplot(aes(x = ocupa, fill = ocupa)) + # Coluna de interesse 
+ggplot(iris, aes(x = Species, fill = Species)) + # Coluna de interesse 
      geom_bar(aes(y = (after_stat(count))/sum(after_stat(count))))+ # Formato de barras na forma de porcentagem relativa
      scale_y_continuous(labels=scales::percent, #mudança de escala do eixo y para percentual
                         limits=c(0, 1))+ #limite do eixo y
@@ -252,18 +225,17 @@ O número de variáveis, o tipo de variável e qual seu objetivo na análise det
      theme(plot.title = element_text(size=20, face="bold.italic"), # Aumentar o tamanho do título e deixar em negrito/itálico
            plot.subtitle = element_text(size=12, color="gray34", face="bold.italic"))+ # Aumentar o tamanho do subtítulo e deixar em negrito/itálico
      labs(title = "Gráfico de Barras", # Título
-         subtitle = "Ocupação", # Subtítulo
-         x = "Ocupação", # Título do eixo x
+         subtitle = "Espécies", # Subtítulo
+         x = "Espécies", # Título do eixo x
          y = "Frequência Relativa (%)", # Título do eixo y
-         fill = "Ocupação")+ # Título da legenda
-     scale_fill_brewer(palette="Set2")) # Cor das barras
+         fill = "Espécies")+ # Título da legenda
+     scale_fill_brewer(palette="Set2") # Cor das barras
 ```
 
 ## **2 variáveis**
 
 ```{r}
-(surto %>% # Data.frame
-     ggplot(aes(x = ocupa, fill = sexo)) + # Coluna de interesse 
+ggplot(iris,aes(x = Species, fill = Petal.Width)) + # Coluna de interesse 
      geom_bar(aes(y = (after_stat(count))/sum(after_stat(count))))+ # Formato de barras na forma de porcentagem relativa
      scale_y_continuous(labels=scales::percent, #mudança de escala do eixo y para percentual
                         limits=c(0, 1))+ #limite do eixo y
@@ -275,7 +247,7 @@ O número de variáveis, o tipo de variável e qual seu objetivo na análise det
          x = "Ocupação", # Título do eixo x
          y = "Frequência Relativa (%)", # Título do eixo y
          fill = "Sexo")+ # Título da legenda
-     scale_fill_brewer(palette="Set1")) # Cor das barras
+     scale_fill_brewer(palette="Set1") # Cor das barras
 ```
 
 ## **3 variáveis**
